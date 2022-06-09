@@ -4,10 +4,12 @@
 <% else %>
   <% @articles.each do |article| %>
   	<% if article.archived? %>
-  		<%= article.title %>
-  		<%= link_to "Change To Public", article_change_to_public_path(article.id) %>
+  		<h3><%= link_to article.title, article %> &#8594;
+  		<%= link_to "Change To Public", article_change_to_public_path(article.id)%>
+  		</h3>
    		<br>
   	<% end %>
   <% end %>
 <% end %>
+<br> <br>
 <%= link_to "Home", root_path %>
