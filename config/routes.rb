@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "home#index"
 
   get 'articles/get_archived_posts', to: "articles#get_archived_posts"
