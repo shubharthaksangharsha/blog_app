@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    puts "Show"
     @article = Article.find(params[:id])
   end
 
@@ -36,6 +37,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    puts "Yo"
     @article = Article.find(params[:id])
     @article.destroy
 
