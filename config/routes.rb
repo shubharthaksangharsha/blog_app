@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "articles#index"
+  root "home#index"
 
   get 'articles/get_archived_posts', to: "articles#get_archived_posts"
   get 'home/about'
