@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   root "articles#index"
 
+  get 'articles/show_archived', to: "articles#get_archived_posts"
+
   resources :articles do
+    get :change_to_public, member: true
     resources :comments
   end
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

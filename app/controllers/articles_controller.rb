@@ -1,10 +1,25 @@
 class ArticlesController < ApplicationController
+  http_basic_authenticate_with name: "shubharthak", password: "abcd", except: [:index, :show]
   def index
     @articles = Article.all
   end
 
+  def get_archived_posts
+    @articles = Article.all
+  end
+
+  def change_to_public
+    @article = Article.find(params[:article_id])
+    @article.status = "public"
+    if @article.save
+      redirect_to articles_show_archived_path
+
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
-    puts "Show"
     @article = Article.find(params[:id])
   end
 
@@ -37,12 +52,12 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    puts "Yo"
     @article = Article.find(params[:id])
     @article.destroy
 
     redirect_to root_path, status: :see_other
   end
+
   private
     def article_params
       params.require(:article).permit(:title, :body, :status)

@@ -1,0 +1,13 @@
+<h1>Archived Articles</h1>
+<% if Article.archived_count == 0 %>
+  <h2>You have 0 Archived Posts</h2>
+<% else %>
+  <% @articles.each do |article| %>
+  	<% if article.archived? %>
+  		<%= article.title %>
+  		<%= link_to "Change To Public", article_change_to_public_path(article.id) %>
+   		<br>
+  	<% end %>
+  <% end %>
+<% end %>
+<%= link_to "Home", root_path %>

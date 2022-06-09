@@ -17,7 +17,7 @@
 
   <div>
     <%= form.label :status %><br>
-    <%= form.select :status, Article::VALID_STATUSES, selected: 'public' %>
+    <%= form.select :status, Article::VALID_STATUSES, selected: article.status %>
   </div>
   <br>
 
