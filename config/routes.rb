@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root "articles#index"
 
   get 'articles/get_archived_posts', to: "articles#get_archived_posts"
+  get 'home/about'
+  get 'home/index'
 
   resources :articles do
     get :change_to_public, member: true
