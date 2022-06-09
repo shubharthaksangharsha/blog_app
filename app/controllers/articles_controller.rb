@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:article_id])
     @article.status = "public"
     if @article.save
-      redirect_to articles_show_archived_path
+      redirect_to articles_get_archived_posts_path
 
     else
       render :new, status: :unprocessable_entity
