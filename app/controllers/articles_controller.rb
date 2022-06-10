@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:update, :edit, :show, :destroy]
-  http_basic_authenticate_with name: "shubharthak", password: "abcd", except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @articles = Article.all
   end
@@ -77,7 +77,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body, :status)
+      params.require(:article).permit(:title, :body, :status, :user_id)
     end
     def find_article
       @article = Article.find(params[:id])

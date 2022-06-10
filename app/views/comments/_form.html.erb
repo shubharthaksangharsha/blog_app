@@ -1,19 +1,40 @@
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
-    <p>
-        <%= form.label :commenter %><br>
-        <%= form.text_field :commenter %>
-    </p>
-    <p>
-        <%= form.label :body %> <br>
-        <%= form.text_area :body %>
-    </p>
+<% if user_signed_in? %>
+    <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+        <p>
+            <%= form.text_field :commenter, value: current_user.email,type: :hidden  %>
+        </p>
+        <p>
+            <%= form.label :body, "Comment" %> <br>
+            <%= form.text_area :body %>
+        </p>
 
-    <p>
-        <%= form.label :status %><br>
-        <%= form.select :status, Article::VALID_STATUSES, selected: 'public' %>
-    </p>
+        <p>
+            <%= form.label :status %><br>
+            <%= form.select :status, Article::VALID_STATUSES, selected: 'public' %>
+        </p>
 
-    <p>
-        <%= form.submit %>
-    </p>
+        <p>
+            <%= form.submit %>
+        </p>
+    <% end %>
+<% else %>
+    <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+        <p>
+            <%= form.text_field :commenter, value: "xyz",type: :hidden  %>
+        </p>
+        <p>
+            <%= form.label :body, "Comment" %> <br>
+            <%= form.text_area :body %>
+        </p>
+
+        <p>
+            <%= form.label :status %><br>
+            <%= form.select :status, Article::VALID_STATUSES, selected: 'public' %>
+        </p>
+
+        <p>
+            <%= form.submit %>
+        </p>
+    <% end %>
+
 <% end %>
