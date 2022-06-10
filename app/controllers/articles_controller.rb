@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def get_archived_posts
-    @articles = Article.all
+    @articles = Article.where(user_id: current_user.id)
   end
 
   def change_to_public
