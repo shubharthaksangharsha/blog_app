@@ -1,16 +1,34 @@
 <% provide(:title, @article.title) %>
-<h1><%= @article.title %></h1>
-<p><%= @article.body %></p>
+<div class="card">
+  <div class="card-header ">
+   <h1><%= @article.title %> </h1>
+  </div>
+  <div class="card-body">
+  	<p>
+    <%= @article.body %>
+	</p>
+  </div>
+</div>
 
+
+<!-- <h1><%= @article.title %></h1> -->
+<!-- <p><%= @article.body %></p> -->
+<br>
 
 <h2>Comments</h2>
+<br>
 <%= render @article.comments%>
 
 
 <h2>Add a comment: </h2>
 <%= render 'comments/form' %>
 
+
 <% if user_signed_in? and current_user.id == @article.user_id %>
-	<%= button_to "Edit this Article", edit_article_path(@article), method: :get %>
-	<%= button_to "Delete this Article", article_path(@article), method: :delete, data: {confirm: "Are you sure you want to reset the indexes?" } %>
+<div class="d-flex flex-rows gap-2" >
+	<%= button_to "Edit this Article", edit_article_path(@article), method: :get, class:"btn btn-outline-dark mr-2" %>
+	
+	<%= button_to "Delete this Article", article_path(@article), method: :delete, class: "btn btn-outline-danger mr-2",data: {confirm: "Are you sure you want to reset the indexes?" } %>
+</div>
+<br>
 <% end %>

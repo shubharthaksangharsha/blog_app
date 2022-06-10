@@ -13,5 +13,5 @@
 </ul>
 
 <% if user_signed_in? %>
-	<%= link_to "Show Archived Articles", articles_get_archived_posts_path %>
+	<%= link_to "Show Archived Articles", articles_get_archived_posts_path, class: "btn btn-dark" %>
 <% end %>

@@ -1,13 +1,17 @@
 <% provide(:title, "All Archived Articles") %>
 <h1>Archived Articles</h1>
-<% if Article.archived_count == 0 %>
+
+<% if @archived_article_count == 0 or @archived_article_count == [] %>
   <h2>You have 0 Archived Posts</h2>
 <% else %>
   <% @articles.each do |article| %>
   	<% if article.archived? %>
-  		<h3><%= link_to article.title, article %> &#8594;
-  		<%= link_to "Change To Public", article_change_to_public_path(article.id)%>
+  	<div class="d-grid gap-2 d-md-block">
+  		<h3 class="d-grid gap-2 d-md-block"><%= link_to article.title, article %> 
+
+  		<%= link_to "Change To Public", article_change_to_public_path(article.id), class:"btn btn-outline-dark btn-sm" %>
   		</h3>
+  	</div>
    		<br>
   	<% end %>
   <% end %>
