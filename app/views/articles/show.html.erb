@@ -10,7 +10,7 @@
 <h2>Add a comment: </h2>
 <%= render 'comments/form' %>
 
-<% if current_user.id == @article.user_id %>
+<% if user_signed_in? and current_user.id == @article.user_id %>
 	<%= button_to "Edit this Article", edit_article_path(@article), method: :get %>
 	<%= button_to "Delete this Article", article_path(@article), method: :delete, data: {confirm: "Are you sure you want to reset the indexes?" } %>
 <% end %>

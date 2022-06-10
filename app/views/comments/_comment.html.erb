@@ -9,7 +9,7 @@
         <%= comment.body %>
     </p>
 
-    <% if comment.commenter == current_user.email || Article.find(comment.article_id).user_id == current_user.id %> 
+    <% if  user_signed_in? and comment.commenter == current_user.email || Article.find(comment.article_id).user_id == current_user.id %> 
     <p>
         <%= button_to "Delete this comment", [comment.article, comment], method: :delete  %>
     </p>
